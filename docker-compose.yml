@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_MONGODB_URI: mongodb://mongodb:27017
+      DATABASE_MONGODB_DBNAME: ship_manager
+      NODE_ENV: ${NODE_ENV:-development}
+    depends_on:
+      - database
+
+  frontend:
+    build: ./frontend
+
+  database:
+    image: mvertes/alpine-mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongodb:/data/db
+
+volumes:
+  mongodb:
