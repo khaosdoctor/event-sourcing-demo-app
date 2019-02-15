@@ -10,6 +10,8 @@
     - [Related material](#related-material)
   - [Running the application](#running-the-application)
   - [Useful tooling](#useful-tooling)
+  - [Challenge!](#challenge)
+    - [How do I improve?](#how-do-i-improve)
 
 ## What is event sourcing
 
@@ -39,3 +41,15 @@ This app uses Docker Compose as runner, it'll build and set all your containers,
 
 - [Doctor](https://github.com/nxcd/doctor)
 - [Next](https://github.com/nxcd/next)
+
+## Challenge!
+
+This app version has some intentional "errors" and/or misleading designs in order to incentivate students to improve it.
+
+### How do I improve?
+
+Our branches are named `master` which is v1, we have `v2` with some additional improvements. If you want to make even more improvements, clone the project and go to the `v2` branch. Then do your thing and submit a PR for approval.
+
+**DO NOT FORGET TO ADD WHAT YOU HAVE CHANGED IN THE [BACKEND CHANGELOG](./backend/CHANGELOG.md) OR [FRONTEND CHANGELOG](./frontend/CHANGELOG.md) FILES IN ORDER TO LET PEOPLE KNOW WHAT HAS BEEN DONE**
+
+> PR's without changelogs will not be approved
