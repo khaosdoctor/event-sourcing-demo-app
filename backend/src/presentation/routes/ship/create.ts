@@ -1,9 +1,8 @@
 import rescue from 'express-rescue'
 import { validate } from '@expresso/expresso'
 import { ShipService } from '../../../services/ShipService'
-import { PortService } from '../../../services/PortService'
 
-export function factory (service: ShipService, portService: PortService) {
+export function factory (service: ShipService) {
   return [
     /**
      * Route validation
@@ -24,7 +23,6 @@ export function factory (service: ShipService, portService: PortService) {
      */
     rescue(async (req, res) => {
       const ship = await service.create(req.body, req.onBehalfOf)
-      if (ship.currentPort) await portService.dockShip(ship, req.onBehalfOf)
 
       res.status(201)
         .json(ship.state)

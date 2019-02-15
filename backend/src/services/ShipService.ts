@@ -16,6 +16,7 @@ export class ShipService {
 
   async create (creationParams: IShipCreationParams, user: string): Promise<Ship> {
     const ship = Ship.create(creationParams, user)
+    if (ship.currentPort) await this.portService.dockShip(ship, user)
 
     return this.repository.save(ship)
   }
@@ -25,6 +26,8 @@ export class ShipService {
     if (!ship) throw new ShipNotFoundError(shipId)
 
     ship.delete(user)
+    await this.portService.undockShip(ship, 'Ship was deleted', user)
+
     return this.repository.save(ship)
   }
 

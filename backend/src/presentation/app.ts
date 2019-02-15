@@ -16,8 +16,8 @@ export const app = expresso(async (app: Express, config: any) => {
   const shipRepository = new ShipRepository(connection)
   const shipService = new ShipService(shipRepository, portService)
 
-  app.post('/ships', routes.ship.create.factory(shipService, portService))
-  app.delete('/ships/:shipId', routes.ship.delete.factory(shipService, portService))
+  app.post('/ships', routes.ship.create.factory(shipService))
+  app.delete('/ships/:shipId', routes.ship.delete.factory(shipService))
   app.get('/ships/:shipId', routes.ship.find.factory(shipService))
   app.get('/ships', routes.ship.getAll.factory(shipService))
   app.get('/ships/:shipId/events', routes.ship.getEvents.factory(shipService))
