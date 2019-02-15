@@ -14,7 +14,7 @@ export function factory (service: PortService, shipService: ShipService) {
       const port = await service.delete(req.params.portId, req.onBehalfOf)
 
       for (const shipId of port.dockedShips) {
-        await shipService.depart(req.params.portId, shipId, 'Port was deleted', req.onBehalfOf)
+        await shipService.depart(shipId, 'Port was deleted', req.onBehalfOf)
       }
 
       res.status(204).end()

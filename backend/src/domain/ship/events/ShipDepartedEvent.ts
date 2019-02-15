@@ -2,7 +2,6 @@ import { Event } from '@nxcd/paradox'
 import { Ship } from '../entity'
 
 interface IEventCreationParams {
-  portId: string,
   reason: string
 }
 

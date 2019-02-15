@@ -44,9 +44,9 @@ export class Ship extends EventEntity<Ship> {
     return this
   }
 
-  depart (portId: string, reason: string, user: string): Ship {
+  depart (reason: string, user: string): Ship {
     this.pushNewEvents([
-      new ShipDepartedEvent({ portId, reason }, user)
+      new ShipDepartedEvent({ reason }, user)
     ])
 
     return this
