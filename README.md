@@ -9,6 +9,7 @@
   - [What is event sourcing](#what-is-event-sourcing)
     - [Related material](#related-material)
   - [Running the application](#running-the-application)
+  - [Useful tooling](#useful-tooling)
 
 ## What is event sourcing
 
@@ -27,8 +28,14 @@ I'm not describing it all here, however I have a series of related material (in 
 - [What is event sourcing (talk in portuguese)](https://speakerdeck.com/khaosdoctor/controlando-o-tempo-com-typescript-e-event-sourcing)
 - [Let's talk about event sourcing and how it can save your project (in portuguese)](https://imasters.com.br/banco-de-dados/event-sourcing-arquitetura-que-pode-salvar-seu-projeto)
 - [An architecture guide to use event sourcing](https://github.com/nxcd/developer-handbook)
-- [Livestream where I build this application (in portuguese)](https://www.meetup.com/DevelopersBR/events/258948273)
+- [Livestream video where I build this application (in portuguese)](https://www.meetup.com/DevelopersBR/events/258948273)
 - [Slides used in this livestream](https://speakerdeck.com/khaosdoctor/event-sourcing-livestream-developersbr)
 
 ## Running the application
 
+This app uses Docker Compose as runner, it'll build and set all your containers, you just need to run `docker-compose up` in the root directory.
+
+## Useful tooling
+
+- [Doctor](https://github.com/nxcd/doctor)
+- [Next](https://github.com/nxcd/next)
