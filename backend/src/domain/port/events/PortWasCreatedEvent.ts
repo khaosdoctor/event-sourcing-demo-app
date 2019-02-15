@@ -19,7 +19,6 @@ export class PortWasCreatedEvent extends Event<IEventCreationParams> {
   static commit (state: Port, event: PortWasCreatedEvent): Port {
     state.id = event.data.id
     state.name = event.data.name
-    console.log(event.data)
     state.dockedShips = event.data.dockedShips.map((shipId) => new ObjectId(shipId))
     state.createdAt = event.timestamp
     state.createdBy = event.user
