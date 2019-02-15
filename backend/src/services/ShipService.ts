@@ -42,4 +42,8 @@ export class ShipService {
 
     return ship
   }
+
+  async getAll (): Promise<Ship[]> {
+    return this.repository.getAll()
+  }
 }

@@ -56,4 +56,8 @@ export class PortService {
 
     return port
   }
+
+  async getAll (): Promise<Port[]> {
+    return this.repository.getAll()
+  }
 }
