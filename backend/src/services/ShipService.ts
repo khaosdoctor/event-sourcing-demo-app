@@ -41,6 +41,19 @@ export class ShipService {
     return this.repository.save(ship)
   }
 
+  async dock (shipId: string, portId: string, user: string): Promise<Ship> {
+    const ship = await this.repository.findById(shipId)
+
+    if (!ship) throw new ShipNotFoundError(shipId)
+    if (ship.currentPort && ship.currentPort.toHexString() === portId) return ship
+
+    const port = await this.portService.find(portId)
+    ship.dock(port, user)
+
+    await this.portService.dockShip(ship, user)
+    return this.repository.save(ship)
+  }
+
   async find (id: ObjectId | string): Promise<Ship> {
     const ship = await this.repository.findById(id)
 

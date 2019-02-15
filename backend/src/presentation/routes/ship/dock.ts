@@ -10,7 +10,7 @@ export function factory (service: ShipService) {
      * =============
      */
     rescue(async (req, res) => {
-      const ship = await service.find(req.params.shipId)
+      const ship = await service.dock(req.params.shipId, req.params.portId, req.onBehalfOf)
 
       res.status(200).json(ship.state)
     }),
