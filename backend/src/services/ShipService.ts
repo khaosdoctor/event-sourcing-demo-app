@@ -3,12 +3,15 @@ import { Ship } from '../domain'
 import { ShipRepository } from '../data/repositories/ShipRepository'
 import { ShipNotFoundError } from '../domain/ship/errors/ShipNotFoundError'
 import { IShipCreationParams } from '../domain/structures/IShipCreationParams'
+import { PortService } from './PortService'
 
 export class ShipService {
   private readonly repository: ShipRepository
+  private readonly portService: PortService
 
-  constructor (repository: ShipRepository) {
+  constructor (repository: ShipRepository, portService: PortService) {
     this.repository = repository
+    this.portService = portService
   }
 
   async create (creationParams: IShipCreationParams, user: string): Promise<Ship> {
@@ -25,13 +28,16 @@ export class ShipService {
     return this.repository.save(ship)
   }
 
-  async depart (portId: string, shipId: ObjectId, reason: string, user: string): Promise<Ship> {
-    const ship = await this.repository.findById(shipId)
+  async depart (shipId: ObjectId | string, reason: string, user: string): Promise<Ship> {
+    const obj = new ObjectId(shipId)
+    const ship = await this.repository.findById(obj)
 
-    if (!ship) throw new ShipNotFoundError(shipId.toHexString())
+    if (!ship) throw new ShipNotFoundError(obj.toHexString())
+    if (!ship.currentPort) return ship
 
-    ship.depart(portId, reason, user)
+    await this.portService.undockShip(ship, reason, user)
 
+    ship.depart(reason, user)
     return this.repository.save(ship)
   }
 
