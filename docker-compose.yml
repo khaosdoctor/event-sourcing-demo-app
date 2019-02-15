@@ -7,11 +7,15 @@ services:
       DATABASE_MONGODB_URI: mongodb://mongodb:27017
       DATABASE_MONGODB_DBNAME: ship_manager
       NODE_ENV: ${NODE_ENV:-development}
+    ports:
+      - '3000:3000'
     depends_on:
       - database
 
   frontend:
     build: ./frontend
+    ports:
+      - '80:3002'
 
   database:
     image: mvertes/alpine-mongo
