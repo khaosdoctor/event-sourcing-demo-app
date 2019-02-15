@@ -10,9 +10,9 @@ export function factory (service: ShipService) {
      * =============
      */
     rescue(async (req, res) => {
-      await service.depart(req.params.shipId, 'User action', req.onBehalfOf)
+      const ship = await service.depart(req.params.shipId, 'User action', req.onBehalfOf)
 
-      res.status(204).end()
+      res.status(200).json(ship.state)
     }),
     (err, _req, _res, next) => {
       if (err instanceof ShipNotFoundError) return next(new HttpError.NotFound({ message: err.message, code: 'ship_not_found' }))
