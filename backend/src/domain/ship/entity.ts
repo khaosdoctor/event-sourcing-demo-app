@@ -1,20 +1,55 @@
 import { ObjectId } from 'mongodb'
 import { EventEntity } from '@nxcd/paradox'
+import { ShipWasCreatedEvent } from './events/ShipWasCreatedEvent'
+import { IShipCreationParams } from '../structures/IShipCreationParams'
+import { ShipWasDeletedEvent } from './events/ShipWasDeletedEvent'
+import { ShipDepartedEvent } from './events/ShipDepartedEvent'
 
 export class Ship extends EventEntity<Ship> {
   public id: ObjectId | null = null
+  public name: string | null = null
+  public currentPort: ObjectId | null = null
+  public createdAt: Date | null = null
+  public createdBy: string | null = null
+  public updatedAt: Date | null = null
+  public updatedBy: string | null = null
+  public deletedAt: Date | null = null
+  public deletedBy: string | null = null
 
-  static readonly collection = 'ship'
+  static readonly collection = 'ships'
 
   constructor () {
     super({
-      // Here goes your known events array in the form of "eventName: eventCommitFunction"
-      // Example: [UserWasCreatedEvent.eventName]: UserWasCreatedEvent.commit
+      [ShipWasCreatedEvent.eventName]: ShipWasCreatedEvent.commit,
+      [ShipWasDeletedEvent.eventName]: ShipWasDeletedEvent.commit,
+      [ShipDepartedEvent.eventName]: ShipDepartedEvent.commit
     })
   }
 
-  static create (): Ship {
-    // Put your entity creation logic here
+  static create (params: IShipCreationParams, user: string): Ship {
+    const ship = new Ship()
+
+    ship.pushNewEvents([
+      new ShipWasCreatedEvent({ id: new ObjectId(), ...params }, user)
+    ])
+
+    return ship
+  }
+
+  delete (user: string): Ship {
+    this.pushNewEvents([
+      new ShipWasDeletedEvent(user)
+    ])
+
+    return this
+  }
+
+  depart (portId: string, reason: string, user: string): Ship {
+    this.pushNewEvents([
+      new ShipDepartedEvent({ portId, reason }, user)
+    ])
+
+    return this
   }
 
   get state () {
@@ -24,8 +59,15 @@ export class Ship extends EventEntity<Ship> {
     ])
 
     return {
-      id: currentState.id
-      // Add more state properties here
+      id: currentState.id,
+      name: currentState.name,
+      currentPort: currentState.currentPort,
+      createdAt: currentState.createdAt,
+      createdBy: currentState.createdBy,
+      updatedAt: currentState.updatedAt,
+      updatedBy: currentState.updatedBy,
+      deletedAt: currentState.deletedAt,
+      deletedBy: currentState.deletedBy
     }
   }
 }

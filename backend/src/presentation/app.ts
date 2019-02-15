@@ -1,14 +1,23 @@
 import routes from './routes'
 import { Express } from 'express'
 import expresso from '@expresso/expresso'
+import { ShipService } from '../services/ShipService'
+import { ShipRepository } from '../data/repositories/ShipRepository'
+import mongodb from '../data/connections/mongodb'
+import { PortRepository } from '../data/repositories/PortRepository'
+import { PortService } from '../services/PortService'
 
 export const app = expresso(async (app: Express, config: any) => {
-  // Initialize all your connections, services, repositories and other stuff here
-  // Example:
-  // const connection = await mongodb.createConnection(config.database.mongodb)
-  // const userRepository = new UserRepository(connection)
-  // const userService = new UserService(userRepository)
+  const connection = await mongodb.createConnection(config.database.mongodb)
 
-  // Put your routes below
-  // Example: app.get('/users', routes.user.get.factory(userService))
+  const shipRepository = new ShipRepository(connection)
+  const shipService = new ShipService(shipRepository)
+
+  const portRepository = new PortRepository(connection)
+  const portService = new PortService(portRepository)
+
+  app.post('/ships', routes.ship.create.factory(shipService, portService))
+  app.delete('/ships/:shipId', routes.ship.delete.factory(shipService, portService))
+  app.post('/ports', routes.port.create.factory(portService))
+  app.delete('/ports/:portId', routes.port.delete.factory(portService, shipService))
 })
