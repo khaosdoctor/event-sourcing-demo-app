@@ -1,0 +1,46 @@
+<template>
+  <el-menu :default-active="activeIndex"
+           class="el-menu-demo"
+           mode="horizontal"
+           background-color="#545c64"
+           text-color="#fff"
+           active-text-color="#ffd04b">
+    <el-submenu index="2">
+      <template slot="title">Ships</template>
+      <el-menu-item index="2-1">
+        <router-link to='/ships/new'>New Ship</router-link>
+      </el-menu-item>
+      <el-menu-item index="2-2">
+        <router-link to='/ships'>Inspect Ship</router-link>
+      </el-menu-item>
+    </el-submenu>
+    <el-submenu index="3">
+      <template slot="title">Ports</template>
+      <el-menu-item index="3-1">
+        <router-link to='/ports/new'>New Port</router-link>
+      </el-menu-item>
+      <el-menu-item index="3-2">
+        <router-link to='/ports'>Inspect Port</router-link>
+      </el-menu-item>
+    </el-submenu>
+  </el-menu>
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      activeIndex: '1',
+      activeIndex2: '1'
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+a {
+  text-decoration: none;
+  color: inherit;
+}
+</style>
+
