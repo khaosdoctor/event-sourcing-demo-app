@@ -4,7 +4,7 @@ services:
   backend:
     build: ./backend
     environment:
-      DATABASE_MONGODB_URI: mongodb://mongodb:27017
+      DATABASE_MONGODB_URI: mongodb://database:27017
       DATABASE_MONGODB_DBNAME: ship_manager
       NODE_ENV: ${NODE_ENV:-development}
     ports:
