@@ -3,10 +3,13 @@ import { ShipService } from './ships'
 import { PortService } from './ports'
 
 const http = axios.create({
-  baseURL: process.env.BACKEND_BASE_URL
+  baseURL: process.env.VUE_APP_BACKEND_BASE_URL,
+  headers: {
+    'X-On-Behalf-Of': 'Ship-Manager'
+  }
 })
 
 export default {
-  user: new ShipService(http),
-  role: new PortService(http)
+  ship: new ShipService(http),
+  port: new PortService(http)
 }
