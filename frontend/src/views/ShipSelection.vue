@@ -6,7 +6,7 @@
       <el-table-column prop="name" label="Name"></el-table-column>
       <el-table-column prop="currentPort" label="Docked at">
         <template slot-scope="scope">
-          <router-link class="port-link" :to="{ name: 'portInfo', params: { id: scope.row.id } }">
+          <router-link class="port-link" :to="{ name: 'portInfo', params: { id: scope.row.currentPort } }">
             {{getPort(scope.row)}}
           </router-link>
         </template>
