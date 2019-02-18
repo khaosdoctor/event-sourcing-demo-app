@@ -16,7 +16,8 @@ services:
     build: ./frontend
     ports:
       - '80:3002'
-    depends_on: backend
+    depends_on:
+      - backend
 
   database:
     image: mvertes/alpine-mongo
