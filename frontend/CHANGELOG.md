@@ -1,3 +1,3 @@
-# This is v1
+# Changes Since v1
 
-> There are no changes here, go to other branch
+> Add all your changes to this log in the format: `- message <[Your Name](@profile)> [Commit SHA or PR Link (optional)]`
