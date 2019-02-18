@@ -1,5 +1,8 @@
 <template>
   <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+    <el-menu-item index="0">
+      <router-link to="/">Ship Manager</router-link>
+    </el-menu-item>
     <el-submenu index="2">
       <template slot="title">Ships</template>
       <el-menu-item index="2-1">
@@ -26,8 +29,8 @@
 export default {
   data () {
     return {
-      activeIndex: '1',
-      activeIndex2: '1',
+      activeIndex: '0',
+      activeIndex2: '0',
       version: require('../../package.json').version
     }
   }
