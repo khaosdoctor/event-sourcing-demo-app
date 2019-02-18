@@ -15,7 +15,7 @@ export function factory (service: PortService) {
       res.status(200).json(port.state)
     }),
     (err, _req, _res, next) => {
-      if (err instanceof PortNotFoundError) return next(new HttpError.NotFound({ message: err.message, code: 'ship_not_found' }))
+      if (err instanceof PortNotFoundError) return next(new HttpError.NotFound({ message: err.message, code: 'port_not_found' }))
 
       next(err)
     }
