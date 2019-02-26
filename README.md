@@ -32,6 +32,7 @@ I'm not describing it all here, however I have a series of related material (in 
 - [An architecture guide to use event sourcing](https://github.com/nxcd/developer-handbook)
 - [Livestream video where I build this application (in portuguese)](https://www.meetup.com/DevelopersBR/events/258948273)
 - [Slides used in this livestream](https://speakerdeck.com/khaosdoctor/event-sourcing-livestream-developersbr)
+- [Article about this architecture](https://imasters.com.br/back-end/event-sourcing-desenvolvendo-sua-primeira-aplicacao/)
 
 ## Running the application
 
