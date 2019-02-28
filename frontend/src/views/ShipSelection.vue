@@ -6,9 +6,10 @@
       <el-table-column prop="name" label="Name"></el-table-column>
       <el-table-column prop="currentPort" label="Docked at">
         <template slot-scope="scope">
-          <router-link class="port-link" :to="{ name: 'portInfo', params: { id: scope.row.currentPort } }">
+          <router-link class="port-link" v-if="scope.row.currentPort" :to="{ name: 'portInfo', params: { id: scope.row.currentPort } }">
             {{getPort(scope.row)}}
           </router-link>
+          <span v-if="!scope.row.currentPort">On route to next port</span>
         </template>
       </el-table-column>
       <el-table-column prop="createdAt" label="Creation Date" :formatter="formatDate"></el-table-column>
@@ -44,7 +45,7 @@ export default {
     },
     getPort (row) {
       const foundPort = this.ports.find((port) => port.id === row.currentPort)
-      return foundPort.name
+      return foundPort ? foundPort.name : 'On route'
     },
     handleEdit (index, rowElementId) {
       this.$router.push({ name: 'shipInfo', params: { id: rowElementId } })
