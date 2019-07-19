@@ -1,5 +1,5 @@
 import { Db } from 'mongodb'
-import { MongodbEventRepository } from '@nxcd/paradox'
+import { MongodbEventRepository } from '@irontitan/paradox'
 import { Ship } from '../../domain/ship/entity'
 
 export class ShipRepository extends MongodbEventRepository<Ship> {

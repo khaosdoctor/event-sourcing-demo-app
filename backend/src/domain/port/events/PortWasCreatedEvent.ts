@@ -1,4 +1,4 @@
-import { Event } from '@nxcd/paradox'
+import { Event } from '@irontitan/paradox'
 import { ObjectId } from 'mongodb'
 import { Port } from '../entity'
 import { IPortCreationParams } from '../../structures/IPortCreationParams'

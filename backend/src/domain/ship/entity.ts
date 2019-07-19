@@ -1,5 +1,5 @@
 import { ObjectId } from 'mongodb'
-import { EventEntity } from '@nxcd/paradox'
+import { EventEntity } from '@irontitan/paradox'
 import { ShipWasCreatedEvent } from './events/ShipWasCreatedEvent'
 import { IShipCreationParams } from '../structures/IShipCreationParams'
 import { ShipWasDeletedEvent } from './events/ShipWasDeletedEvent'

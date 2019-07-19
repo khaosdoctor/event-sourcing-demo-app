@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@expresso/expresso": "^0.15.0",
-    "@nxcd/paradox": "^2.8.2",
+    "@irontitan/paradox": "^2.8.2",
     "express-rescue": "^1.1.5",
     "mongodb": "^3.1.10",
     "sugar-env": "^1.5.3"

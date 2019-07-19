@@ -1,4 +1,4 @@
-import { Event } from '@nxcd/paradox'
+import { Event } from '@irontitan/paradox'
 import { Port } from '../entity'
 
 export class PortWasDeletedEvent extends Event<{}> {
