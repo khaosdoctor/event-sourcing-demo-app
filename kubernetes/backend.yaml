@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: porto-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: porto-backend
+  template:
+    metadata:
+      labels:
+        app: porto-backend
+    spec:
+      containers:
+        - image: <image>
+          name: porto-backend
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: DATABASE_MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  key: database_mongodb_uri
+                  name: backend-db
+            - name: DATABASE_MONGODB_DBNAME
+              value: ship_manager
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: porto-backend
+spec:
+  selector:
+    app: porto-backend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: porto-backend
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+    - host: <hostname>
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: porto-backend
+              servicePort: http
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: backend-db
+type: Opaque
+stringData:
+  database_mongodb_uri: <uri>

@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: porto-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: porto-frontend
+  template:
+    metadata:
+      labels:
+        app: porto-frontend
+    spec:
+      containers:
+        - image: <image>
+          name: porto-frontend
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          ports:
+            - containerPort: 80
+              name: http
+          volumeMounts:
+            - name: config
+              mountPath: /usr/src/app/dist/config.js
+              subPath: config.js
+      volumes:
+        - name: config
+          configMap:
+            name: frontend-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: porto-frontend
+spec:
+  selector:
+    app: porto-frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: porto-frontend
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+    - host: <hostname>
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: porto-frontend
+              servicePort: http
