@@ -2,6 +2,8 @@
 
 > Demo application to demonstrate the power of the event sourcing architecture for DevelopersBR livestream
 
+> You can check that in [JavaScript as well](https://github.com/khaosdoctor/event-sourcing-javascript)
+
 ## Summary
 
 - [Demo app for Event Sourcing architecture](#demo-app-for-event-sourcing-architecture)
@@ -33,6 +35,7 @@ I'm not describing it all here, however I have a series of related material (in 
 - [Livestream video where I build this application (in portuguese)](https://www.meetup.com/DevelopersBR/events/258948273)
 - [Slides used in this livestream](https://speakerdeck.com/khaosdoctor/event-sourcing-livestream-developersbr)
 - [Article about this architecture](https://imasters.com.br/back-end/event-sourcing-desenvolvendo-sua-primeira-aplicacao/)
+- [Video about this architecture (2021) [Portuguese]](https://www.youtube.com/watch?v=BTjH7rKEbio)
 
 ## Running the application
 
