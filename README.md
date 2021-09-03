@@ -27,8 +27,7 @@ I'm not describing it all here, however I have a series of related material (in 
 
 ### Related material
 
-- [Tardis - A Nodejs library to control time](https://github.com/nxcd/tardis)
-- [Paradox - A Nodejs library to aid event sourcing apps](https://github.com/nxcd/paradox)
+
 - [What is event sourcing (talk in portuguese)](https://speakerdeck.com/khaosdoctor/controlando-o-tempo-com-typescript-e-event-sourcing)
 - [Let's talk about event sourcing and how it can save your project (in portuguese)](https://imasters.com.br/banco-de-dados/event-sourcing-arquitetura-que-pode-salvar-seu-projeto)
 - [An architecture guide to use event sourcing](https://github.com/nxcd/developer-handbook)
@@ -44,7 +43,8 @@ This app uses Docker Compose as runner, it'll build and set all your containers,
 ## Useful tooling
 
 - [Doctor](https://github.com/nxcd/doctor)
-- [Next](https://github.com/nxcd/next)
+- [Tardis - A Nodejs library to control time](https://github.com/irontitan/tardis)
+- [Paradox - A Nodejs library to aid event sourcing apps](https://github.com/irontitan/paradox)
 
 ## Challenge!
 
