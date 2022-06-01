@@ -13,7 +13,7 @@ spec:
         app: porto-backend
     spec:
       containers:
-        - image: <image>
+        - image: khaosdoctor/event-sourcing-backend
           name: porto-backend
           resources:
             requests:
@@ -46,7 +46,7 @@ spec:
       port: 80
       targetPort: 3000
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: porto-backend
@@ -54,13 +54,16 @@ metadata:
     kubernetes.io/ingress.class: addon-http-application-routing
 spec:
   rules:
-    - host: <hostname>
+    - host: uri
       http:
         paths:
           - path: /
+            pathType: Prefix
             backend:
-              serviceName: porto-backend
-              servicePort: http
+              service:
+                name: porto-backend
+                port:
+                  name: http
 ---
 apiVersion: v1
 kind: Secret
@@ -68,4 +71,4 @@ metadata:
   name: backend-db
 type: Opaque
 stringData:
-  database_mongodb_uri: <uri>
+  database_mongodb_uri: mongodb://mongodb:27017/ship_manager
